@@ -19,3 +19,7 @@ Use frameCount to randomly change the colour of the big circle and the small pea
 **Iteration 4**
 
 Use alpha() to make the transparency of the pattern decrease with the timer, then increase with the timer when it reaches 0, and so on.
+
+**Iteration 5**
+
+I noticed that the transparency of some of the shapes did not change, and modified the code so that the transparency of all the shapes changed normally with the timer.

@@ -91,7 +91,7 @@ function drawPatterns() {
         let angle = TWO_PI / numShapes * i;
         let shapeX = pattern.x + (pattern.size / 2 - 10 * j) * cos(angle);
         let shapeY = pattern.y + (pattern.size / 2 - 10 * j) * sin(angle);
-        fill(pattern.dotColor, pattern.alpha); // Set the fill color for the inner shapes
+        fill(random(255), random(255), random(255), pattern.alpha); // Set the fill color for the inner shapes
 
         // Depending on the design type, draw either dots, lines, or rings
         if (pattern.type === 0) {
@@ -103,7 +103,7 @@ function drawPatterns() {
             let angle = TWO_PI / numShapes * i;
             let shapeX1 = pattern.x + (pattern.size / 2 * 0.6 - 10 * j) * cos(angle);
             let shapeY1 = pattern.y + (pattern.size / 2 * 0.6 - 10 * j) * sin(angle);
-            fill(pattern.dotColor, pattern.alpha); // Set the fill color for the inner shapes
+            fill(random(255), random(255), random(255), pattern.alpha); // Set the fill color for the inner shapes
             ellipse(shapeX1, shapeY1, 5);
           }
           
@@ -111,7 +111,7 @@ function drawPatterns() {
             let angle = TWO_PI / numShapes * i;
             let shapeX2 = pattern.x + (pattern.size / 2 - 5 * j) * cos(angle);
             let shapeY2 = pattern.y + (pattern.size / 2 - 5 * j) * sin(angle);
-            fill(pattern.dotColor, pattern.alpha); // Set the fill color for the inner shapes
+            fill(random(255), random(255), random(255), pattern.alpha); // Set the fill color for the inner shapes
             ellipse(shapeX2, shapeY2, 5);
           }
 
