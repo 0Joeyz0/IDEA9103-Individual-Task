@@ -3,7 +3,7 @@ let patterns = [];
 let circleDiameter;
 let spacing = 30; // Define space between circles
 
-let frameInterval = 60; // Set the frame rate for animation
+let frameInterval = 80; // Set the frame rate for animation
 let frameCount = 0;
 
 
@@ -44,11 +44,8 @@ function setup() {
       });
     }
   }
-
   // Draw each circle pattern on the canvas
-  for(let pattern of patterns) {
-    drawPattern(pattern);
-  }
+  drawPatterns();
 }
 
 
@@ -129,15 +126,20 @@ function drawPattern(pattern) {
   }
 }
 
+function drawPatterns() {
+  for (let pattern of patterns) {
+    drawPattern(pattern);
+  }
+}
+
 function draw() {
   // Increment the current frame count
   frameCount++;
   
   // Check if it's time to redraw the canvas based on the frame interval
   if (frameCount % frameInterval === 0) {  
-    for (let pattern of patterns) {
-    drawPattern(pattern); // Redraw each circle pattern on the canvas
-    }
+    background(random(255)); // Set random colours for the canvas
+    drawPatterns();
   }
 }
 
