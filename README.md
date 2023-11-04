@@ -15,3 +15,7 @@ Use frameCount to randomly change the colour of the big circle and the small pea
 
 1. Draw the patterns array directly inside the drawPatterns() function to simplify repetitive mobilisation of code, and increase the modularity and readability of the code.
 2. Changes the range of random colours for the canvas background.
+
+**Iteration 4**
+
+Use alpha() to make the transparency of the pattern decrease with the timer, then increase with the timer when it reaches 0, and so on.

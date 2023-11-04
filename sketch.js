@@ -3,7 +3,7 @@ let patterns = [];
 let circleDiameter;
 let spacing = 30; // Define space between circles
 
-let frameInterval = 80; // Set the frame rate for animation
+let frameInterval = 60; // Set the frame rate for animation
 let frameCount = 0;
 
 
@@ -40,6 +40,8 @@ function setup() {
         size: circleDiameter,
         color: color,
         dotColor: dotColor,
+        alpha: 255, // Initial alpha value
+        alphaDirection: -1, // Direction of transparency change, initially decreasing
         type: int(random(3)), // Randomly select one of three design types
       });
     }
@@ -64,10 +66,10 @@ function drawPatterns() {
       let pearlY = pattern.y + outerRadius * sin(angle);
 
       if (pearls[pearlIndex] === 1) {
-        fill(random(255), random(255), random(255)); // Set the fill color for the small pearls
+        fill(random(255), random(255), random(255), pattern.alpha); // Set the fill color for the small pearls
         ellipse(pearlX, pearlY, 10); // Draw a small pearl
       } else {
-        fill(255); // Set the fill color for the large pearls
+        fill(255, pattern.alpha); // Set the fill color for the large pearls
         ellipse(pearlX, pearlY, 20); // Draw a large pearl
       }
 
@@ -79,7 +81,7 @@ function drawPatterns() {
     let radiusStep = 20; // Decreasing radius
     for(let i = 0; i < numCircle; i++){
       let radius = startRadius - radiusStep * i;
-      fill(random(255), random(255), random(255)); // Set the fill color for the circle
+      fill(random(255), random(255), random(255), pattern.alpha); // Set the fill color for the circle
       ellipse(pattern.x, pattern.y, radius * 2);
     }
     
@@ -89,7 +91,7 @@ function drawPatterns() {
         let angle = TWO_PI / numShapes * i;
         let shapeX = pattern.x + (pattern.size / 2 - 10 * j) * cos(angle);
         let shapeY = pattern.y + (pattern.size / 2 - 10 * j) * sin(angle);
-        fill(pattern.dotColor); // Set the fill color for the inner shapes
+        fill(pattern.dotColor, pattern.alpha); // Set the fill color for the inner shapes
 
         // Depending on the design type, draw either dots, lines, or rings
         if (pattern.type === 0) {
@@ -101,7 +103,7 @@ function drawPatterns() {
             let angle = TWO_PI / numShapes * i;
             let shapeX1 = pattern.x + (pattern.size / 2 * 0.6 - 10 * j) * cos(angle);
             let shapeY1 = pattern.y + (pattern.size / 2 * 0.6 - 10 * j) * sin(angle);
-            fill(pattern.dotColor); // Set the fill color for the inner shapes
+            fill(pattern.dotColor, pattern.alpha); // Set the fill color for the inner shapes
             ellipse(shapeX1, shapeY1, 5);
           }
           
@@ -109,7 +111,7 @@ function drawPatterns() {
             let angle = TWO_PI / numShapes * i;
             let shapeX2 = pattern.x + (pattern.size / 2 - 5 * j) * cos(angle);
             let shapeY2 = pattern.y + (pattern.size / 2 - 5 * j) * sin(angle);
-            fill(pattern.dotColor); // Set the fill color for the inner shapes
+            fill(pattern.dotColor, pattern.alpha); // Set the fill color for the inner shapes
             ellipse(shapeX2, shapeY2, 5);
           }
 
@@ -117,7 +119,7 @@ function drawPatterns() {
           for(let j = 0; j < 8; j ++){
             let radius = 6 * j;
             noFill();
-            stroke(random(255), random(255), random(255)); // Set the colour of the internal shape stroke
+            stroke(random(255), random(255), random(255), pattern.alpha); // Set the colour of the internal shape stroke
             ellipse(pattern.x, pattern.y, radius);
           } 
           stroke(0); // Restore stroke colour
@@ -135,6 +137,12 @@ function draw() {
   // Check if it's time to redraw the canvas based on the frame interval
   if (frameCount % frameInterval === 0) {  
     background(random(255), random(255), random(255)); // Set random colours for the canvas
+    for (let pattern of patterns) {
+      pattern.alpha += pattern.alphaDirection * 60; // Increase or decrease transparency according to alphaDirection
+      if (pattern.alpha <= 0 || pattern.alpha >= 255) {
+        pattern.alphaDirection = -pattern.alphaDirection; // Change alphaDirection when transparency reaches 0 or 255
+      }
+    }
     drawPatterns();
   }
 }
