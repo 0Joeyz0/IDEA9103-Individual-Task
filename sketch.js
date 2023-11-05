@@ -182,7 +182,7 @@ function drawSawtoothRing(cx, cy, radius, teeth, toothHeight){
 
 function updatePatterns() {
   for (let pattern of patterns) {
-    pattern.alpha += pattern.alphaDirection * 50;
+    pattern.alpha += pattern.alphaDirection * 125; // The size of the pattern transparency change
     if (pattern.alpha >= 255) {
       pattern.alpha = 255;
       pattern.alphaDirection = -1; // Reverse direction after transparency reaches 255

@@ -34,3 +34,7 @@ I noticed that the transparency of some of the shapes did not change, and modifi
 1. add the randomColor function to the code and use it wherever I need to generate random colours to avoid writing random(255), random(255), random(255) multiple times.
 2. since there were too many random colours, I changed the size, colour, position and number of shapes to avoid the image being too cluttered.
 3. rearranged and removed some duplicate code.
+
+**Iteration 7**
+
+Increase the size of the pattern transparency change to reduce the time spent waiting for the pattern to disappear or appear.
