@@ -32,32 +32,26 @@ function generatePatterns() {
   // Loop through the columns and rows to position each circle pattern
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
-      // Store the circle pattern attributes in the patterns array
-      let pattern = createPattern(i, j);
-      patterns.push(pattern);
+
+    // Calculate staggered offset for both x and y positions
+    let offsetX = (j % 2) * spacing * 2; // Horizontal staggering
+    let offsetY = (i % 2) * spacing * 2; // Vertical staggering
+    // Calculate the x and y positions for each circle
+    let x = i * (circleDiameter + spacing) + offsetX + circleDiameter / 2;
+    let y = j * (circleDiameter + spacing) + offsetY + circleDiameter / 2;
+
+    // Store the circle pattern attributes in the patterns array
+    patterns.push({
+      x: x,
+      y: y,
+      size: circleDiameter,
+      color: randomColor(),
+      alpha: 255, // Initial alpha value
+      alphaDirection: -1, // Direction of transparency change, initially decreasing
+      type: int(random(3)), // Randomly select one of three design types
+      });
     }
   }
-}
-
-
-function createPattern(i, j) {
-  // Calculate staggered offset for both x and y positions
-  let offsetX = (j % 2) * spacing * 2; // Horizontal staggering
-  let offsetY = (i % 2) * spacing * 2; // Vertical staggering
-
-  // Calculate the x and y positions for each circle
-  let x = i * (circleDiameter + spacing) + offsetX + circleDiameter / 2;
-  let y = j * (circleDiameter + spacing) + offsetY + circleDiameter / 2;
-
-  return {
-    x: x,
-    y: y,
-    size: circleDiameter,
-    color: randomColor(),
-    alpha: 255, // Initial alpha value
-    alphaDirection: -1, // Direction of transparency change, initially decreasing
-    type: int(random(3)), // Randomly select one of three design types
-  };
 }
 
 

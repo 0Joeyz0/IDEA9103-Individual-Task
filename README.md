@@ -38,3 +38,7 @@ I noticed that the transparency of some of the shapes did not change, and modifi
 **Iteration 7**
 
 Increase the size of the pattern transparency change to reduce the time spent waiting for the pattern to disappear or appear.
+
+**Iteration 8**
+
+Combine the generatePatterns() function and the createPatterns() function to simplify the code.
